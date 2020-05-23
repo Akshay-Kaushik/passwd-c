@@ -8,7 +8,7 @@ int check_user(char user_name[])//This function checks the existence of the user
 	FILE *fp;
 	FILE *passwd_save;
 	int errnum,c;
-	char s[150];// This character array is to read the content of every line in the shadow file. Length is 32 because max allowed length for username is 32 characters long.
+	char s[100];// This character array is to read the content of every line in the shadow file. 
 	char *username;// This pointer is to compare the username with the input username. It is a token for the strtok function.
 	fp=fopen("shadow","r");	
 	if (fp == NULL) 
@@ -20,7 +20,7 @@ int check_user(char user_name[])//This function checks the existence of the user
 	}
 	else
 	{	int line=0;//this line variable is used to store in which line is the user security data at in the shadow file.
-		while(fgets(s,150,fp)!=NULL)
+		while(fgets(s,sizeof(s),fp)!=NULL)
 		{	
 			line++;
 			username=strtok(s,":");//strtok is a builtin function in string.h used to get substrings before a delimiter. 
@@ -37,7 +37,6 @@ int check_user(char user_name[])//This function checks the existence of the user
 				fputs(username,passwd_save);
 				fclose(passwd_save);
 				return line;
-				break;
 			}
 			strcpy(s,"");
 			username=strtok(NULL,":");
@@ -166,7 +165,7 @@ char *new_passwd(char passwd[])
 	}
 	
 }
-int append_to_shadow(int line,char username[],char passwd[])
+int append_to_shadow(int line,char username[],char passwd[])//passwd is the new password entered.
 {
 	int pline=0;//This variable is used to store the line in which our file pointer is at to copy all lines except the user line.
 	char s[100],l[100]="";//l character array will contain the user info line to be appended.
