@@ -7,7 +7,7 @@ int check_user(char user_name[])//This function checks the existence of the user
 {
 	FILE *fp;
 	FILE *passwd_save;
-	int errnum,c;
+	int errnum,c=10;//Here c=10 has no meaning , I wanted to avoid the compiler assuming its 0. Any number except -1,0 and 1 works here for my logic.
 	char s[100];// This character array is to read the content of every line in the shadow file. 
 	char *username;// This pointer is to compare the username with the input username. It is a token for the strtok function.
 	fp=fopen("shadow","r");	

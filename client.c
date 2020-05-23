@@ -21,7 +21,7 @@ int main(int argc,char *argv[])
 			label://This label is used in the goto function/command which comes few lines after this. It is used to reenter password of conditions arent satisfied.
 			printf("Enter the new password: ");
 			scanf("%s",new_pass);
-			if(strlen(new_pass)<8)
+			if(strlen(new_pass)<8 || strlen(new_pass)>12)
 			{
 				printf("Password length must be between 8 and 12 characters!\n");
 				goto label;
