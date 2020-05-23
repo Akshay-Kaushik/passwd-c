@@ -156,6 +156,7 @@ char *new_passwd(char passwd[])
 	scanf("%s",passwd_new);
 	if(strcmp(passwd_new,passwd)==0)
 	{
+		printf("Password changed Succesfully!!\n");
 		return passwd;
 	}
 	else

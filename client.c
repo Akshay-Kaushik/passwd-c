@@ -17,6 +17,7 @@ int main(int argc,char *argv[])
 					This function intern calls another function new_passwd whicb is used to perform the operation of accepting a new password and encrypting it into the 						shadow file */
 		if(check_passwd(old_pass))
 		{
+			remove("passwd_for_user");//this is to delete the file where only the password is stored of the user in-case its not deleted.
 			label://This label is used in the goto function/command which comes few lines after this. It is used to reenter password of conditions arent satisfied.
 			printf("Enter the new password: ");
 			scanf("%s",new_pass);
